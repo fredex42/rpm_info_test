@@ -12,6 +12,7 @@
 		9BF0D5BD1D493124002A8CC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BF0D5BC1D493124002A8CC9 /* Images.xcassets */; };
 		9BF0D5C01D493124002A8CC9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BF0D5BE1D493124002A8CC9 /* MainMenu.xib */; };
 		9BF0D5CC1D493124002A8CC9 /* maptestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF0D5CB1D493124002A8CC9 /* maptestTests.m */; };
+		9BF0D5D71D4944D7002A8CC9 /* RPMInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF0D5D61D4944D7002A8CC9 /* RPMInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 		9BF0D5C51D493124002A8CC9 /* maptestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = maptestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF0D5CA1D493124002A8CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BF0D5CB1D493124002A8CC9 /* maptestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = maptestTests.m; sourceTree = "<group>"; };
+		9BF0D5D51D4944D7002A8CC9 /* RPMInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPMInfo.h; sourceTree = "<group>"; };
+		9BF0D5D61D4944D7002A8CC9 /* RPMInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPMInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,8 @@
 			children = (
 				9BF0D5B71D493124002A8CC9 /* AppDelegate.h */,
 				9BF0D5B81D493124002A8CC9 /* AppDelegate.m */,
+				9BF0D5D51D4944D7002A8CC9 /* RPMInfo.h */,
+				9BF0D5D61D4944D7002A8CC9 /* RPMInfo.m */,
 				9BF0D5BC1D493124002A8CC9 /* Images.xcassets */,
 				9BF0D5BE1D493124002A8CC9 /* MainMenu.xib */,
 				9BF0D5B51D493124002A8CC9 /* Supporting Files */,
@@ -212,6 +217,7 @@
 			files = (
 				9BF0D5BB1D493124002A8CC9 /* main.m in Sources */,
 				9BF0D5B91D493124002A8CC9 /* AppDelegate.m in Sources */,
+				9BF0D5D71D4944D7002A8CC9 /* RPMInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
