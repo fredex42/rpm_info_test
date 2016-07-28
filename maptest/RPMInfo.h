@@ -147,6 +147,7 @@ struct hdr_index_entry {
 - (id) initWithFile:(NSString *)filename error:(NSError **)error;
 - (RPMSignatureSection *) header;
 - (RPMIndexChunk *) index;
+- (BOOL) close:(NSError **)error;
 
 /*
  unsigned char magic[4];
