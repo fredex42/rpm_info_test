@@ -1,0 +1,57 @@
+This is a test app to test and improve on RPM introspection abilities in Cocoa, for my New Relic deployment monitor.
+
+It's built under Xcode 6.2 on MacOS 10.9; other versions should work but you'll probably have issues for anything under MacOS 10.6.
+
+Simply check out and open the .xcodeproj in Xcode.
+
+If you're only interested in the RPM introspection, check out RPMInfo.h and RPMInfo.m.  There are no external dependencies to this code, relevant pieces have been copied from the RPM source to avoid cross-platform cruft.
+
+The RPM file consists of a main header (mostly deprecated), a "signature section" containing stuff like package size, checksums, pgp sigs, etc.
+an index section containing tagged chunks with all of the important header data (see RPMInfo.h for known tags) and the archive itself.
+
+Simple usage of the class is as follows:
+
+#import "RPMInfo.h"
+.
+.
+.
+.
+.
+    RPMInfo *info = [[RPMInfo alloc] initWithFile:@"/path/to/file.rpm"];
+    NSLog(@"Name is %@",[rpm name]);
+    NSLog(@"RPM archive version is %d.%d",[rpm majorVersion],[rpm minorVersion]);
+    
+    RPMSignatureSection *header_section = [rpm header];
+    NSLog(@"Got RPM with size %ld and payload size %ld",[header_section size], [header_section payloadSize]);
+    
+        RPMIndexChunk *index = [rpm index];
+    
+    NSMutableArray *infoarray = [NSMutableArray array];
+    RPMEntry *entry=[index entryForTag:TAG_NAME];
+    NSLog(@"Name: %@",[entry stringValue]);
+    [infoarray addObject:[NSDictionary dictionaryWithObjectsAndKeys:[entry stringValue], @"value", @"Name", @"key", nil]];
+    
+    entry=[index entryForTag:TAG_ARCH];
+    NSLog(@"Architecture: %@",[entry stringValue]);
+    [infoarray addObject:[NSDictionary dictionaryWithObjectsAndKeys:[entry stringValue], @"value", @"Architecture", @"key", nil]];
+    
+    entry=[index entryForTag:TAG_RELEASE];
+    NSLog(@"Release: %@",[entry stringValue]);
+    [infoarray addObject:[NSDictionary dictionaryWithObjectsAndKeys:[entry stringValue], @"value", @"Release", @"key", nil]];
+    
+    entry=[index entryForTag:TAG_VERSION];
+    NSLog(@"Version: %@",[entry stringValue]);
+    [infoarray addObject:[NSDictionary dictionaryWithObjectsAndKeys:[entry stringValue], @"value", @"Version", @"key", nil]];
+    
+    entry=[index entryForTag:TAG_NOPATCH];
+    NSLog(@"Nopatch: %@",[entry stringValue]);
+    entry=[index entryForTag:TAG_BUILDTIME];
+    NSDate *bt=[[NSDate alloc] initWithTimeIntervalSince1970:[[entry numberValue] doubleValue]];
+    NSLog(@"Build time: %@",bt);
+    [infoarray addObject:[NSDictionary dictionaryWithObjectsAndKeys:bt, @"value", @"Build time", @"key", nil]];
+    
+    entry=[index entryForTag:TAG_CATEGORY];
+    NSLog(@"Category: %@",[entry stringValue]);
+    [infoarray addObject:[NSDictionary dictionaryWithObjectsAndKeys:[entry stringValue], @"value", @"Category", @"key", nil]];
+    
+    [rpm close];  //important to cleanup file etc.
