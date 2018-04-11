@@ -6,9 +6,9 @@ version: 2
 jobs:
   build:
 
-    # Specify the Xcode version to use
-    macos:
-      xcode: "7.3.1"
+    # # Specify the Xcode version to use
+    # macos:
+    #   xcode: "7.3.1"
 
     steps:
       - checkout
